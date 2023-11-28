@@ -1,0 +1,1 @@
+{"version":3,"file":"comments.seed.js","sourceRoot":"","sources":["../../../../src/database/seed/data/comments.seed.ts"],"names":[],"mappings":";;;AAMa,QAAA,WAAW,GAAkB;IACxC;QACE,OAAO,EAAE,iBAAiB;QAC1B,MAAM,EAAE,CAAC;QACT,aAAa,EAAE,CAAC;KACjB;IACD;QACE,OAAO,EAAE,qBAAqB;QAC9B,MAAM,EAAE,CAAC;QACT,aAAa,EAAE,CAAC;KACjB;CACF,CAAC"}
