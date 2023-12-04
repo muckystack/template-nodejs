@@ -24,7 +24,6 @@ const interfaces_1 = require("../auth/interfaces");
 const user_entity_1 = require("../users/entities/user.entity");
 const create_patient_dto_1 = require("../patient/dto/create-patient.dto");
 const update_patient_dto_1 = require("../patient/dto/update-patient.dto");
-const pagination_dto_1 = require("../../common/dtos/pagination.dto");
 let DoctorPatientsController = class DoctorPatientsController {
     constructor(doctorPatientsService) {
         this.doctorPatientsService = doctorPatientsService;
@@ -63,12 +62,12 @@ __decorate([
     (0, decorators_1.RoleProtected)(interfaces_1.ValidRoles.DOCTOR),
     (0, swagger_1.ApiQuery)({ name: 'limit', type: Number, required: false, example: 10 }),
     (0, swagger_1.ApiQuery)({ name: 'page', type: Number, required: false, example: 1 }),
+    (0, swagger_1.ApiQuery)({ name: 'search', type: String, required: false, example: 'nombreyotelefono' }),
     openapi.ApiResponse({ status: 200 }),
     __param(0, (0, decorators_1.GetUserDecorator)()),
     __param(1, (0, common_1.Query)(new common_1.ValidationPipe())),
     __metadata("design:type", Function),
-    __metadata("design:paramtypes", [user_entity_1.User,
-        pagination_dto_1.PaginationDto]),
+    __metadata("design:paramtypes", [user_entity_1.User, Object]),
     __metadata("design:returntype", void 0)
 ], DoctorPatientsController.prototype, "findAll", null);
 __decorate([

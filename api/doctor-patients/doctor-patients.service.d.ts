@@ -5,13 +5,14 @@ import { Patient } from '../patient/entities/patient.entity';
 import { CreatePatientDto } from '../patient/dto/create-patient.dto';
 import { UpdatePatientDto } from '../patient/dto/update-patient.dto';
 import { PaginationDto } from 'src/common/dtos/pagination.dto';
+import { QueryDoctorPatientDto } from './dto/query-doctor-patient.dto';
 export declare class DoctorPatientsService {
     private readonly doctorPatientRepository;
     private readonly userRepository;
     private readonly dataSource;
     constructor(doctorPatientRepository: Repository<Patient>, userRepository: Repository<User>, dataSource: DataSource);
     create(createDoctorPatientDto: CreatePatientDto, user: User): Promise<Patient>;
-    findAll(user: User, query: PaginationDto): Promise<{
+    findAll(user: User, query: PaginationDto & QueryDoctorPatientDto): Promise<{
         count: {
             limit: number;
             page: number;

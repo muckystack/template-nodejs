@@ -57,13 +57,21 @@ let DoctorPatientsService = class DoctorPatientsService {
         }
     }
     async findAll(user, query) {
-        const { limit = 10, page = 1 } = query;
+        const { limit = 10, page = 1, search } = query;
         const offset = limit * (page - 1);
+        const where = [
+            { doctor: { id: user.doctor.id } },
+            { doctor: { id: user.doctor.id } },
+        ];
+        if (search)
+            where[0].user = { name: (0, typeorm_2.Like)(`%${search}%`) };
+        if (search)
+            where[1].user = { phone: (0, typeorm_2.Like)(`%${search}%`) };
         try {
             const [doctorPatients, total] = await this.doctorPatientRepository.findAndCount({
                 take: limit,
                 skip: offset,
-                where: { doctor: { id: user.doctor.id } },
+                where,
                 relations: { user: true },
             });
             return {
