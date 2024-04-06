@@ -16,6 +16,9 @@ export declare class DoctorPatientsController {
         };
         data: import("../patient/entities/patient.entity").Patient[];
     }>;
+    findAllByText(user: User, query: PaginationDto & QueryDoctorPatientDto): Promise<{
+        data: [import("../patient/entities/patient.entity").Patient[], number];
+    }>;
     findOne(id: string, user: User): Promise<import("../patient/entities/patient.entity").Patient>;
     update(id: string, updateDoctorPatientDto: UpdatePatientDto, user: User): Promise<import("../patient/entities/patient.entity").Patient | import("@nestjs/common").NotFoundException>;
     remove(id: string, user: User): Promise<void>;

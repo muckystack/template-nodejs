@@ -20,6 +20,9 @@ export declare class DoctorPatientsService {
         };
         data: Patient[];
     }>;
+    findAllByText(user: User, query: PaginationDto & QueryDoctorPatientDto): Promise<{
+        data: [Patient[], number];
+    }>;
     findOne(id: number, user: User): Promise<Patient>;
     update(id: number, updateDoctorPatientDto: UpdatePatientDto, user: User): Promise<Patient | NotFoundException>;
     remove(id: number, user: User): Promise<void>;

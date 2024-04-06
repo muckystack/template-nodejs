@@ -83,6 +83,29 @@ let DoctorPatientsService = class DoctorPatientsService {
             return this.handleDBErrors(error);
         }
     }
+    async findAllByText(user, query) {
+        const { search } = query;
+        const where = [
+            { doctor: { id: user.doctor.id } },
+            { doctor: { id: user.doctor.id } },
+        ];
+        if (search)
+            where[0].user = { name: (0, typeorm_2.Like)(`%${search}%`) };
+        if (search)
+            where[1].user = { phone: (0, typeorm_2.Like)(`%${search}%`) };
+        try {
+            const doctorPatients = await this.doctorPatientRepository.findAndCount({
+                where,
+                relations: { user: true },
+            });
+            return {
+                data: doctorPatients,
+            };
+        }
+        catch (error) {
+            return this.handleDBErrors(error);
+        }
+    }
     async findOne(id, user) {
         try {
             const doctorPatients = await this.doctorPatientRepository.findOne({

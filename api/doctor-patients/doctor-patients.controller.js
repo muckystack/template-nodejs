@@ -34,6 +34,9 @@ let DoctorPatientsController = class DoctorPatientsController {
     findAll(user, query) {
         return this.doctorPatientsService.findAll(user, query);
     }
+    findAllByText(user, query) {
+        return this.doctorPatientsService.findAllByText(user, query);
+    }
     findOne(id, user) {
         return this.doctorPatientsService.findOne(+id, user);
     }
@@ -62,7 +65,12 @@ __decorate([
     (0, decorators_1.RoleProtected)(interfaces_1.ValidRoles.DOCTOR),
     (0, swagger_1.ApiQuery)({ name: 'limit', type: Number, required: false, example: 10 }),
     (0, swagger_1.ApiQuery)({ name: 'page', type: Number, required: false, example: 1 }),
-    (0, swagger_1.ApiQuery)({ name: 'search', type: String, required: false, example: 'nombreyotelefono' }),
+    (0, swagger_1.ApiQuery)({
+        name: 'search',
+        type: String,
+        required: false,
+        example: 'nombreyotelefono',
+    }),
     openapi.ApiResponse({ status: 200 }),
     __param(0, (0, decorators_1.GetUserDecorator)()),
     __param(1, (0, common_1.Query)(new common_1.ValidationPipe())),
@@ -70,6 +78,23 @@ __decorate([
     __metadata("design:paramtypes", [user_entity_1.User, Object]),
     __metadata("design:returntype", void 0)
 ], DoctorPatientsController.prototype, "findAll", null);
+__decorate([
+    (0, common_1.Get)('filter'),
+    (0, common_1.UseGuards)((0, passport_1.AuthGuard)(), user_role_guard_1.UserRoleGuard),
+    (0, decorators_1.RoleProtected)(interfaces_1.ValidRoles.DOCTOR),
+    (0, swagger_1.ApiQuery)({
+        name: 'search',
+        type: String,
+        required: false,
+        example: 'nombreyotelefono',
+    }),
+    openapi.ApiResponse({ status: 200 }),
+    __param(0, (0, decorators_1.GetUserDecorator)()),
+    __param(1, (0, common_1.Query)(new common_1.ValidationPipe())),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [user_entity_1.User, Object]),
+    __metadata("design:returntype", void 0)
+], DoctorPatientsController.prototype, "findAllByText", null);
 __decorate([
     (0, common_1.Get)(':id'),
     (0, common_1.UseGuards)((0, passport_1.AuthGuard)(), user_role_guard_1.UserRoleGuard),
